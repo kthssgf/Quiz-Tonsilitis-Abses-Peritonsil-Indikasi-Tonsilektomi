@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kuis UKMPPD THT – Tonsilitis, Abses Peritonsil, Tonsilektomi</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f6fb;--card:#fff;--tx:#1b2333;--mu:#64708a;--br:#d8deeb;--pr:#2f5597;--ok:#1e8e4e;--okb:#e4f5ea;--no:#c0392b;--nob:#fbe9e7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141f;--card:#19202f;--tx:#e8ecf5;--mu:#94a0ba;--br:#2c364c;--pr:#7ea3e6;--okb:#143324;--nob:#3a1d1a;--ok:#56c785;--no:#ef7a6c}}
+:root[data-theme="dark"]{--bg:#10141f;--card:#19202f;--tx:#e8ecf5;--mu:#94a0ba;--br:#2c364c;--pr:#7ea3e6;--okb:#143324;--nob:#3a1d1a;--ok:#56c785;--no:#ef7a6c}
+*{box-sizing:border-box}html,body{margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.w{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;margin:.2rem 0}
+.card{background:var(--card);border:1px solid var(--br);border-radius:14px;padding:18px;margin-top:14px}
+.mu{color:var(--mu);font-size:.9rem}
+.bar{height:6px;background:var(--br);border-radius:9px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:var(--pr);transition:width .3s}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tag{font-size:.75rem;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--pr);color:#fff}
+.q{margin:12px 0;font-size:1.02rem}
+.o{display:flex;gap:10px;width:100%;text-align:left;background:var(--card);color:var(--tx);border:1.5px solid var(--br);border-radius:10px;padding:10px 12px;margin:8px 0;font:inherit;cursor:pointer}
+.o:hover:not(:disabled){border-color:var(--pr)}
+.o b{flex:none;width:24px;height:24px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:.8rem}
+.o.ok{background:var(--okb);border-color:var(--ok)}.o.no{background:var(--nob);border-color:var(--no)}
+.ex{margin-top:12px;padding:12px;border-radius:10px;background:var(--bg);border-left:4px solid var(--pr);font-size:.93rem}
+.btn{background:var(--pr);color:#fff;border:0;border-radius:10px;padding:11px 20px;font:inherit;font-weight:600;cursor:pointer;margin-top:14px}
+.btn.g{background:transparent;color:var(--pr);border:1.5px solid var(--pr)}
+.big{font-size:2.6rem;font-weight:800;color:var(--pr)}
+.rv{border-top:1px solid var(--br);padding:10px 0;font-size:.9rem}
+</style></head><body><div class="w" id="app"></div>
+<script>
+// Format: [level, soal, [jawaban BENAR, salah, salah, salah, salah], pembahasan]
+const D=[
+["C1","Abses peritonsil merupakan komplikasi dari…",["Tonsilitis akut","Rinitis alergi","Otitis eksterna","Sinusitis maksila","Laringitis akut"],"Abses peritonsil adalah komplikasi tonsilitis akut dengan kuman penyebab biasanya sama dengan penyebab tonsilitis."],
+["C2","Pria 22 tahun nyeri menelan hebat satu sisi, otalgia ipsilateral, mulut berbau, air liur menumpuk, sulit membuka mulut, suara seperti makan kentang panas. Diagnosisnya?",["Abses peritonsil","Tonsilitis kronis","Tonsilitis folikularis","Hipertrofi adenoid","Faringitis akut"],"Gejala abses peritonsil: nyeri telan hebat, otalgia ipsilateral, fetor ex ore, hipersalivasi, hot potato voice, trismus, KGB submandibula membesar."],
+["C2","Temuan pemeriksaan fisik KHAS abses peritonsil adalah…",["Uvula terdorong ke sisi kontralateral","Uvula di garis tengah","Pseudomembran putih kotor mudah berdarah","Kripte melebar berisi detritus","Bull neck"],"Pembengkakan peritonsil mendorong tonsil dan uvula ke sisi kontralateral; palatum molle bengkak."],
+["C1","Daerah tempat supurasi abses peritonsil biasanya berada di…",["Superior dan lateral fosa tonsilaris (jaringan ikat longgar)","Dasar lidah","Nasofaring","Fosa piriformis","Subglotis"],"Daerah superior dan lateral fosa tonsilaris merupakan jaringan ikat longgar tempat infiltrasi supurasi."],
+["C2","Lokasi insisi drainase abses peritonsil yang benar adalah…",["Pertengahan garis penghubung dasar uvula dan geraham atas terakhir pada sisi sakit","Pada uvula","Pada dinding posterior faring","Di tonsil sisi sehat","Di dasar mulut"],"Insisi/pungsi dilakukan pada pertengahan garis yang menghubungkan dasar uvula dan geraham atas terakhir sisi sakit."],
+["C1","Tonsilektomi yang dilakukan bersamaan dengan drainase abses disebut…",["A chaud","A tiede","A froid","A rouge","A blanc"],"A chaud: bersama drainase (perdarahan banyak); a tiede: 3–4 hari setelah drainase; a froid: 4–6 minggu setelah drainase."],
+["C3","Wanita 30 tahun abses peritonsil telah didrainase; kapan tonsilektomi a froid dilakukan?",["4–6 minggu setelah drainase","Bersamaan dengan drainase","3–4 hari setelah drainase","1 tahun setelah drainase","Tidak pernah"],"A froid dilakukan 4–6 minggu setelah drainase abses."],
+["C2","Pasien abses peritonsil dewasa belum terbentuk pus. Terapi sistemik yang sesuai?",["Amoksisilin 3x500 mg 6–10 hari atau eritromisin 4x500 mg, kumur antiseptik, dan deksametason bila perlu","Antivirus saja","ADS","Metronidazol topikal","Hanya parasetamol"],"Penatalaksanaan: kumur antiseptik, amoksisilin/eritromisin, steroid antiinflamasi (deksametason 3x0,5 mg dewasa 2–3 hari) bila perlu."],
+["C4","Pasien abses peritonsil tidak membaik dengan antibiotik dan insisi drainase. Langkah selanjutnya?",["Tonsilektomi (indikasi absolut)","Antibiotik oral saja","Observasi","Kumur saja","Pemberian ADS"],"Abses peritonsil yang tidak membaik dengan terapi medikamentosa dan drainase merupakan indikasi absolut tonsilektomi."],
+["C4","Abses peritonsil pecah spontan saat tidur dan pasien mengalami batuk, sesak. Komplikasi yang mungkin?",["Perdarahan dan aspirasi paru","Otitis media serosa","Glomerulonefritis","Kejang demam","Tuli sensorineural"],"Komplikasi: pecah spontan (perdarahan, aspirasi paru), penjalaran ke mediastinum atau intrakranial (meningitis, abses otak)."],
+["C4","Pasien abses peritonsil pecah spontan, posisi yang dianjurkan untuk mencegah aspirasi?",["Kaki di atas, kepala di bawah (Trendelenburg)","Duduk tegak","Telentang datar","Setengah duduk","Telungkup dengan kepala tinggi"],"Pada pecah spontan pasien dibaringkan dengan kaki di atas, kepala di bawah agar nanah tidak teraspirasi."],
+["C1","Tonsilitis akut viral memiliki gejala menyerupai…",["Common cold","Difteri","Leukemia akut","Angina Plaut Vincent","Tonsilitis tuberkulosa"],"Gejala tonsilitis viral mirip common cold; penyebab EBV, H. influenzae; terapi istirahat, minum cukup, analgetik, antivirus (metisoprinol)."],
+["C2","Penyebab tonsilitis bakteri tersering dan terapinya?",["Streptokokus beta hemolitikus grup A; amoksisilin/eritromisin","Corynebacterium; ADS","EBV; antivirus","Spirochaeta; vitamin C","Mycobacterium; OAT"],"Tonsilitis bakterial: Streptococcus β hemolyticus grup A; antibiotik spektrum luas (amoksisilin 50 mg/kgBB/hari dibagi 3, 10 hari)."],
+["C1","Tonsilitis dengan detritus yang menyatu membentuk alur disebut…",["Tonsilitis lakunaris","Tonsilitis folikularis","Tonsilitis septik","Tonsilitis difteri","Angina Ludwig"],"Folikularis: detritus tampak jelas (bintik); lakunaris: detritus bersatu membentuk alur."],
+["C2","Anak 6 tahun demam, nyeri telan, tampak pseudomembran putih kotor melekat erat pada tonsil, mudah berdarah bila diangkat, bull neck. Penatalaksanaan?",["ADS tanpa menunggu kultur, penisilin/eritromisin, kortikosteroid","Menunggu hasil kultur dulu","Tonsilektomi segera","Amoksisilin oral rawat jalan","Antivirus"],"Tonsilitis difteri sering keluar di CBT: ADS tanpa menunggu kultur, antibiotik penisilin/eritromisin, kortikosteroid, antipiretik, isolasi, bedrest."],
+["C1","Dosis ADS pada tonsilitis difteri menurut slide adalah…",["20.000–100.000 IU tergantung umur dan berat badan","1.000 IU","200.000–300.000 IU","500 IU","Tidak ada dosis"],"ADS 20.000–100.000 IU tergantung umur dan berat badan, diberikan tanpa menunggu hasil kultur."],
+["C3","Pria 25 tahun higiene mulut buruk, kurang vitamin C, demam, hipersalivasi, gusi mudah berdarah, membran putih abu pada tonsil, halitosis. Diagnosis dan terapi?",["Angina Plaut Vincent; ceftriakson + metronidazol, vitamin C","Tonsilitis difteri; ADS","Mononukleosis; antivirus","Agranulositosis; hentikan obat","Tonsilitis kronis; tonsilektomi"],"Angina Plaut Vincent: Spirochaeta/Treponema; antibiotik aerob dan anaerob (ceftriakson IV, metronidazol infus), vitamin C."],
+["C4","Pria 20 tahun, tonsil edem tertutup membran semu tidak hiperemis, odinofagi hebat, pucat, lemas. Pemeriksaan penunjang prioritas?",["Darah lengkap/apusan darah tepi (curiga leukemia akut)","Rontgen toraks","Kultur urin","Foto polos leher lateral","Esofagoskopi"],"Penyakit kelainan darah sering memberi tanda pertama di tonsil: leukemia akut dengan tonsil udem tertutup membran semu, tidak hiperemis."],
+["C3","Remaja demam, KGB leher membesar, membran semu menutupi ulkus tonsil yang mudah diangkat tanpa perdarahan. Diagnosis?",["Mononukleosis infeksiosa","Tonsilitis difteri","Angina Plaut Vincent","Tonsilitis septik","Abses peritonsil"],"Mononukleosis infeksiosa: membran semu mudah diangkat tanpa perdarahan dan KGB leher membesar."],
+["C3","Pasien mengonsumsi amidopirin dan sulfa, muncul ulkus pada mukosa mulut dan faring, demam. Diagnosis?",["Angina agranulositosis","Tonsilitis difteri","Mononukleosis","Tonsilitis tuberkulosa","Tonsilitis septik"],"Angina agranulositosis akibat keracunan obat golongan amidopirin, sulfa, arsen: ulkus dan radang mukosa mulut dan faring."],
+["C1","Tonsilitis septik disebabkan oleh…",["Streptokokus beta hemolitikus dari susu sapi tidak dimasak","Corynebacterium diphtheriae","Treponema","EBV","Candida"],"Tonsilitis septik: Strep. β hemolyticus dari susu sapi yang tidak dimasak; jarang di Indonesia."],
+["C2","Pria 35 tahun nyeri telan kambuhan, batuk pilek berulang, tonsil T3 kripte melebar berisi detritus, tanda vital normal. Diagnosis?",["Tonsilitis kronis (eksaserbasi akut)","Abses peritonsil","Tonsilitis difteri","Mononukleosis","Karsinoma tonsil"],"Kripte melebar dan detritus khas tonsilitis kronis; mukosa hiperemis menunjukkan eksaserbasi akut."],
+["C4","Pria 55 tahun perokok, tonsil kanan membesar jauh lebih besar dibandingkan kiri, tidak nyeri, KGB leher teraba. Diagnosis banding terpenting?",["Karsinoma tonsil","Tonsilitis kronis","Abses peritonsil","Tonsilitis viral","Adenoiditis"],"Tonsilitis kronis hipertrofi bersifat simetris; tumor/CA tonsil satu sisi besar sedangkan sisi lain kecil."],
+["C4","Pasien abses peritonsil dan tonsilitis kronis sama-sama nyeri telan. Pembeda utama yang KHAS?",["Trismus, hipersalivasi, uvula terdorong kontralateral","Demam","Nyeri telan","Halitosis","Kripte melebar"],"Persamaan: odinofagi. Abses peritonsil: trismus, hipersalivasi, uvula terdorong kontralateral; riwayat duri ikan dapat menjadi pencetus."],
+["C2","Anak 7 tahun tonsilitis berulang; komplikasi sistemik yang perlu dikhawatirkan?",["Glomerulonefritis, demam reumatik, penyakit jantung reumatik, miokarditis","Meningitis tuberkulosa","Katarak","Ulkus peptikum","Gagal ginjal kronik"],"Komplikasi sistemik tonsilitis: glomerulonefritis, miokarditis, demam reumatik, PJR; lokal: abses peritonsil, parafaring, OMA."],
+["C4","Anak 6 tahun tonsil T4 mengorok saat tidur, apnea tidur, disfagia berat, dan gagal tumbuh. Tatalaksana?",["Tonsilektomi (indikasi absolut hipertrofi tonsil dengan obstruksi)","Antibiotik jangka panjang","Observasi 1 tahun","Kumur antiseptik","ADS"],"Indikasi absolut tonsilektomi: hipertrofi tonsil dengan obstruksi jalan napas, disfagia berat, gangguan tidur, komplikasi kardiopulmoner."],
+["C3","Indikasi RELATIF tonsilektomi adalah…",["≥3 episode infeksi tonsil dalam 1 tahun meski antibiotik adekuat","Abses peritonsil tidak membaik dengan drainase","Tonsilitis dengan kejang demam","Hipertrofi tonsil dengan obstruksi napas","Tonsilitis perlu konfirmasi PA (TB)"],"Indikasi relatif: ≥3 episode/tahun dengan antibiotik adekuat, halitosis kronis tidak membaik, karier Streptokokus β hemolitikus grup A tidak membaik."],
+["C4","Anak 5 tahun bernapas lewat mulut, tidur ngorok, wajah adenoid, otitis media akut berulang. Pemeriksaan penunjang untuk memastikan?",["Foto lateral kepala/nasofaring (rasio adenoid)","Rinoskopi anterior","Foto toraks","Audiometri saja","Tes Mantoux"],"Adenoid terletak di belakang hidung sehingga tidak terlihat pada rinoskopi anterior; diagnosis dengan foto lateral kepala (rasio adenoid), palpasi digital."],
+["C3","Indikasi adenoidektomi pada hipertrofi adenoid adalah…",["Sumbatan nasofaring (napas mulut, sleep apnea), infeksi berulang (OMA/OME), kecurigaan neoplasma","Demam tinggi 1 hari","Hidung berdarah","Alergi makanan","Nyeri gigi"],"Indikasi adenoidektomi: sumbatan, infeksi (adenoiditis, OMA, OME berulang), dan kecurigaan neoplasma jinak/ganas."],
+["C4","Setelah adenoidektomi, pasien mengalami tuli konduktif. Penyebab yang paling mungkin?",["Kuretase terlalu lateral merusak torus tubarius sehingga tuba Eustachii oklusi","Kuretase kurang bersih","Kuretase terlalu dalam","Perdarahan ringan","Infeksi tonsil"],"Komplikasi adenoidektomi: kurang bersih (perdarahan), terlalu dalam (kerusakan dinding belakang faring), terlalu lateral (torus tubarius rusak, oklusi tuba, tuli konduktif)."]
+];
+const $=id=>document.getElementById(id),app=$('app');
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let Q,i,score,log;
+function start(){Q=sh(D).map(d=>{const o=sh(d[2].map((t,k)=>({t,c:k===0})));return{l:d[0],q:d[1],o,e:d[3]}});i=0;score=0;log=[];show();scrollTo(0,0)}
+function intro(){app.innerHTML=`<h1>Kuis Kasus UKMPPD – Tonsil</h1><p class="mu">Tonsilitis, Abses Peritonsil, Indikasi Tonsilektomi, Hipertrofi Adenoid.</p><div class="card"><p>30 soal kasus klinis (15 soal C1–C2 dan 15 soal C3–C4), 5 pilihan (A–E). Urutan soal dan pilihan diacak setiap kali kuis dimulai.</p><button class="btn" id="go">Mulai Kuis</button></div>`;$('go').onclick=start}
+function show(){if(i>=Q.length)return end();const q=Q[i];
+app.innerHTML=`<div class="top"><h1>Kuis THT</h1><span class="mu">Soal ${i+1}/${Q.length} · Skor ${score}</span></div><div class="bar"><i style="width:${i/Q.length*100}%"></i></div>
+<div class="card"><span class="tag">${q.l}</span><p class="q">${q.q}</p><div id="os">${q.o.map((o,k)=>`<button class="o" data-k="${k}"><b>${'ABCDE'[k]}</b><span>${o.t}</span></button>`).join('')}</div><div id="fb"></div></div>`;
+document.querySelectorAll('.o').forEach(b=>b.onclick=()=>pick(+b.dataset.k))}
+function pick(k){const q=Q[i],ok=q.o[k].c;if(ok)score++;log.push({q,ok,k});
+document.querySelectorAll('.o').forEach((b,n)=>{b.disabled=true;if(q.o[n].c)b.classList.add('ok');else if(n===k)b.classList.add('no')});
+$('fb').innerHTML=`<div class="ex"><b>${ok?'Benar ✓':'Salah ✗'}</b> — ${q.e}</div><button class="btn" id="nx">${i===Q.length-1?'Lihat Hasil':'Soal Berikutnya'}</button>`;
+$('nx').onclick=()=>{i++;show();scrollTo(0,0)}}
+function end(){const lv=l=>{const a=log.filter(x=>l.includes(x.q.l));return a.filter(x=>x.ok).length+'/'+a.length};
+const wr=log.filter(x=>!x.ok);
+app.innerHTML=`<h1>Hasil Kuis</h1><div class="card"><div class="big">${Math.round(score/Q.length*100)}%</div><p>Benar ${score} dari ${Q.length} soal.</p><p class="mu">C1–C2: ${lv(['C1','C2'])} · C3–C4: ${lv(['C3','C4'])}</p><button class="btn" id="rs">Ulangi (soal diacak ulang)</button></div>
+<div class="card"><b>Pembahasan soal yang salah (${wr.length})</b>${wr.length?wr.map(x=>`<div class="rv"><span class="tag">${x.q.l}</span> ${x.q.q}<br><span style="color:var(--no)">Jawabanmu: ${x.q.o[x.k].t}</span><br><span style="color:var(--ok)">Benar: ${x.q.o.find(o=>o.c).t}</span><br><span class="mu">${x.q.e}</span></div>`).join(''):'<p>Semua jawaban benar. Luar biasa!</p>'}</div>`;
+$('rs').onclick=start;scrollTo(0,0)}
+intro();
+</script></body></html>
